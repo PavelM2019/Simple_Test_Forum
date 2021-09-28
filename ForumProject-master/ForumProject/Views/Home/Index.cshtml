@@ -1,0 +1,46 @@
+﻿@model ForumProject.Models.ForumModels.ForumViewModels.HomePageViewModel
+
+@{ ViewBag.Title = "Home Page"; }
+
+<div title="To create discussion you must be authenticated">
+    <a href='@Url.Action("CreateDiscussion", "Home")' class="btn btn-danger btn-lg" disabled="@(!User.Identity.IsAuthenticated)">Start new topics</a>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td>Title</td>
+            <td>Description</td>
+            <td>Author</td>
+            <td>Details</td>
+        </tr>
+    </thead>
+
+    @{ for (int i = 0; i < Model.Discussions.Count; i++)
+        {
+        <tr>
+
+            <td height="40%">
+                <div class="editor-field">
+                    <a class="discussionTitle" href='@Url.Action("Discussion", "Home", new { discussionId = @Model.Discussions[i].DiscussionId })'>@Model.Discussions[i].Title</a>
+                </div>
+            </td>
+            <td>
+                <div class="col-md-8" style="text-align:center">
+                    @Model.Discussions[i].Description
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    <p class="username">@Model.Discussions[i].ApplicationUser.UserName</p>
+                </div>
+            </td>
+            <td height="40%">
+                <div class="button-holder">
+                    <a  class="btn btn-info text-uppercase"href='@Url.Action("Discussion", "Home", new { discussionId = @Model.Discussions[i].DiscussionId })'>Read More</a>
+                </div>
+            </td>
+        </tr>
+ }
+        }
+</table>

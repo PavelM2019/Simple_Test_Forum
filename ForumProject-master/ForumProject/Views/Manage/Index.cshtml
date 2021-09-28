@@ -1,0 +1,52 @@
+﻿@model ForumProject.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal"  >
+        <dt>First name:</dt>
+        <dd>@Model.FirstName</dd>
+    </dl>
+    <dl class="dl-horizontal"  >  
+        <dt>Last name:</dt>
+        <dd>@Model.LastName</dd>
+    </dl>
+    <dl class="dl-horizontal"  >
+         <dt>Username:</dt>
+        <dd>@Model.UserName</dd>
+    </dl>
+    <dl class="dl-horizontal"   >
+        <dt>Email:</dt>
+        <dd>@Model.Email</dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt  >Phone number:</dt>
+        <dd>@Model.PhoneNumber</dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dd>
+
+            @if (Model.HasPassword)
+            {
+                <a href='@Url.Action("ChangePassword","Manage")' class ="btn btn-primary" style="text-align:right;font-size:15px; margin-left:1px" >Change your password</a>
+            }
+
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+
+        </dd>
+
+    </dl>
+    <div class="form-group">
+        <a href='@Url.Action("EditProfile","Manage")' class="btn btn-primary" style=" margin-left:180px; font-size:15px">Edit your data</a>
+    </div>
+</div>
